@@ -1,33 +1,41 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% include "componentes/scripts.html" %}
-    <title>Document</title>
-
+    <title>home</title>
 </head>
-
-<body class="d-flex flex-column min-vh-100">
-    {% include "componentes/navbar.html" %}
-
-    <main class="flex-grow-1">
-    <h1>1HOME</h1>
-    <h1>2HOME</h1>
-    <h1>3HOME</h1>
-    <h1>4HOME</h1>
-    <h1>5HOME</h1>
-    <h1>HOME</h1>
-    <h1>HOME</h1>
-    <h1>HOME</h1>
-    <h1>HOME</h1>
-    <h1>HOME</h1>
-    <h1>HOME</h1>
-    <h1>HOME</h1>
-    </main>
-
-    {% include "componentes/footer.html"%}
+<body>
+    {% include "componentes/header.html" %}
+     <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    {% for flan in flanes%}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                             <a href="{% url 'detalle_flan' flan.pk%}"><img class="card-img-top" src="{{flan.imagen.url}}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ flan.nombre_producto }}</h5>
+                                    <!-- Flan precio-->
+                                    <li>{{ flan.precio }}</li>
+                                    <!-- Flan descripción-->
+                                    <li>{{ flan.descripcion }}</li>
+                                    <!-- Flan stock-->
+                                    <li>{{ flan.stock }}</li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    {% include "componentes/footer.html" %}
 </body>
-
 </html>
