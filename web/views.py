@@ -4,6 +4,15 @@ from .models import Producto
 from django.views.generic import DetailView
 
 # Create your views here.
+def indice(request):
+    return render(request, "index.html", {})
+
+def acerca(request):
+    return render(request, "about.html", {})
+
+def bienvenido(request):
+    return render(request, "welcome.html", {})
+
 def home(request):
     flanes = Producto.objects.all()
     return render(request, "home.html", {"flanes": flanes})
