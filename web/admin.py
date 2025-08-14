@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import Flan, ContactForm
+from .models import Flan, ContactData
 
 # Register your models here.
 
-admin.site.register(ContactForm)
+@admin.register(ContactData)
+class ContactDataAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(Flan)
-class ProductoAdmin(admin.ModelAdmin):
+class FlanAdmin(admin.ModelAdmin):
     pass

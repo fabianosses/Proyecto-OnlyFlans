@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from django.forms import ModelForm
 
 class Flan(models.Model):
     flan_uuid = models.UUIDField(
@@ -23,11 +24,17 @@ class Flan(models.Model):
         verbose_name = "Flan"
         verbose_name_plural = "Flanes"
 
-class ContactForm(models.Model):
+class ContactData(models.Model):
+    contact_form_uuid = models.UUIDField (default=uuid.uuid4, editable=False)
     customer_email = models.EmailField()
-    customer_name = models.CharField(max_length=64)
+    customer_name = models.CharField("Nombre del cliente", max_length=64)
     message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Mensaje de {self.customer_name} ({self.customer_email})"
+
+# Crear un modelo basado en ModelForm que permita reemplazar nuestro ContactDataForm, lo podemos llamar ContactDataModelForm.
+class ContactDataModelForm(ModelForm):
+    class Meta:
+        model = ContactData
+        fields = ["customer_name", "customer_email", "message"]
