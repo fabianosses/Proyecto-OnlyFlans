@@ -1,22 +1,49 @@
-/* Definición de clases para las fuentes */
-.hubballi-regular {
-  font-family: "Hubballi", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  color:mediumpurple;
-  margin-right: -25px;
-}
-
-.arizonia-regular {
-  font-family: "Arizonia", cursive;
-  font-size: 100px;
-  font-weight: 400;
-  font-style: normal;
-  margin-left: -25px;
-}
-
+/* Fondo del header */
 .logo-container {
-    padding: 0px;
+    width: 100%;
+    background-color:chocolate;
     text-align: center;
-    background-color: red;
+}
+
+/* Fondo barra navegación */
+.fondo_navbar {
+    max-width: 1200px;
+    background-color:peachpuff;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+/* Texto del logo ONLY*/
+.hubballi-regular {
+    font-family: "Hubballi", sans-serif;
+    font-weight: 400;
+    color: mediumpurple;
+    margin-right: -30px;
+    font-size: 4rem;
+}
+
+/* Texto del logo Flans*/
+.arizonia-regular {
+    font-family: "Arizonia", cursive;
+    font-size: 8rem;
+    font-weight: 400;
+    margin-left: -30px;
+}
+
+body {
+    background-image: url('../img/flan-fondo.jpeg'); /* Ruta relativa */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Opcional: fondo semitransparente para mejor legibilidad */
+.container {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    padding: 20px;
 }

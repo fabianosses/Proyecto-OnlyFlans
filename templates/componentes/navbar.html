@@ -1,23 +1,28 @@
+{% load static%}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+        
     <title>Document</title>
 </head>
 <body>
-    
-{% load static%}
+
 <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg fondo_navbar">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{% url 'indice'%}">Inicio</a>
+                <a class="navbar-brand" href="{% url 'index'%}">Inicio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'bienvenido'%}">Bienvenido</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'acerca'%}">Acerca</a></li>
-                            </ul>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'welcome'%}">Bienvenido</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'about'%}">Acerca</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'contacto'%}">Contacto</a></li>
+                    </ul>
                     
                     {% if user.is_authenticated %}
                         <div class="nav-item dropdown">
@@ -26,11 +31,12 @@
                                 <li><a class="dropdown-item" href="#!">All Products</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                               
-                                <form action="{% url 'logout'%}" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit">salir</button>
-                                </form>
+                                <li>
+                                    <form action="{% url 'logout'%}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit" class="dropdown-item">salir</button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     {% else %}

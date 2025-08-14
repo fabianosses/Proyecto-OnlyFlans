@@ -75,8 +75,8 @@ TEMPLATES = [
 ### config login
 
 LOGIN_URL = "login/"
-LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "login"
+LOGIN_REDIRECT_URL = "welcome"
+LOGOUT_REDIRECT_URL = "index"
 
 
 WSGI_APPLICATION = "onlyflans.wsgi.application"

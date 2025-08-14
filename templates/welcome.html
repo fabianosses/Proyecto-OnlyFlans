@@ -1,11 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido cliente</title>
-</head>
-<body>
-    <p>bienvenido cliente</p>
-</body>
-</html>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="text-center mb-5">Flanes Exclusivos</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for flan in flanes %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <a href="{% url 'detalle_flan' flan.flan_uuid %}">
+                        {% if flan.imagen %}
+                            <img class="card-img-top img-fluid" style="object-fit: cover; height: 200px;" src="{{ flan.imagen.url }}" alt="{{ flan.name }}">
+                        {% elif flan.image_url %}
+                            <img class="card-img-top" src="{{ flan.image_url }}" alt="{{ flan.name }}">
+                        {% else %}
+                            <img class="card-img-top" src="{% static 'img/placeholder.jpg' %}" alt="Imagen no disponible">
+                        {% endif %}
+                    </a>
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bolder">{{ flan.name }}</h5>
+                            <ul class="list-unstyled">
+                                <li>Precio: ${{ flan.precio }}</li>
+                                <li>{{ flan.description }}</li>
+                                <li>Stock: {{ flan.stock }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">No hay flanes exclusivos disponibles.</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

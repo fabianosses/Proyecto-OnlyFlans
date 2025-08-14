@@ -1,51 +1,35 @@
+{% load static %}
 <!doctype html>
 <html lang="es">
 
     <head>
-        {% load static %}
+        <!-- Meta tags y título -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Aquí colocas TODAS las dependencias globales -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'assets/styles.css' %}">
+        <title>{% block title %}Bienvenido a onlyflans{% endblock %}</title>
+        <!-- Aquí van TODAS las dependencias globales -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Arizonia&family=Hubballi&display=swap" rel="stylesheet">
-        <title>{% block title %}Bienvenido a onlyflans{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'assets/styles.css' %}">
     </head>
-
     <body>
-        <div class="container text-center">
-            <div class="logo-container">
+        <div class="container-fluid p-0"> <!-- Contenedor fluido para fondo completo -->
+            <header>
                 {% include "componentes/header.html" %}
-            </div>
-         
-                            <!-- Barra de navegación -->
-                            <nav>
-                                <div style="background: yellow">
-                                    {% include "componentes/navbar.html" %}   
-                                </div>
-                            </nav>
-                        </header>
-                        <!-- contenido -->
-                        <main>
-                            <div style="background: white;">
-                                {% include "welcome.html" %}  
-                            </div>   
-                        </main>
-                        <!-- Pie de página -->
-                        <footer>
-                            <div style="background: green;">
-                                {% include "componentes/footer.html" %}  
-                            </div>
-                        </footer>
+                <nav >
+                    {% include "componentes/navbar.html" %}   
+                </nav>
+            </header>
 
+            <main>
+                {% block content %}{% endblock %}
+            </main>
 
-        {% block content %}{% endblock %}
-
-        <!-- Scripts globales al final del body -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+            {% include "componentes/footer.html" %}
+            {% include "componentes/scripts.html" %}
         </div>
     </body>
-
 </html>

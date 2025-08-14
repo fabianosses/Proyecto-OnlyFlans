@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import indice, acerca, bienvenido, home, home_registrado, ProductoDetalle
+from .views import index, acerca, bienvenido, home, exito, ProductoDetalle
 
 urlpatterns = [
-    path("", indice, name="indice"),
-    path("bienvenido/", bienvenido, name="bienvenido"),
-    path("acerca/", acerca, name="acerca"),
+    path("", index, name="index"),
+    path("welcome/", bienvenido, name="welcome"),
+    path("about/", acerca, name="about"),
     path("home/", home, name="home"),
-    path("home_registrado/", home_registrado, name="home_registrado"),
-    path("producto/<int:pk>/",ProductoDetalle.as_view(), name="detalle_flan"),
+    path("exito/", exito, name="exito"),
+    path('flan/<uuid:pk>/', ProductoDetalle.as_view(), name='detalle_flan'),
 ]
