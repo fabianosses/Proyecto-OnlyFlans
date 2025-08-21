@@ -1,8 +1,9 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView
 from .forms import FormularioRegistro
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib import messages
 
 # Create your views here.
 class Registro(SuccessMessageMixin, CreateView):
@@ -13,10 +14,15 @@ class Registro(SuccessMessageMixin, CreateView):
 
 class Login(LoginView):
     template_name = "users/login.html"
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        return reverse_lazy("welcome")
 
 class Logout(LogoutView):
     next_page = reverse_lazy("index")
-    http_method_names = ["get", "post"]
+    
+    def post(self, request, *args, **kwargs):
+        messages.success(request, "Sesión cerrada con éxito")
+        return super().post(request, *args, **kwargs)
 
-#class Contacto(TemplateView):
-#    template_name = "users/contactus.html"

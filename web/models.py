@@ -25,16 +25,15 @@ class Flan(models.Model):
         verbose_name_plural = "Flanes"
 
 class ContactData(models.Model):
-    contact_form_uuid = models.UUIDField (default=uuid.uuid4, editable=False)
+    contact_data_uuid = models.UUIDField (default=uuid.uuid4, editable=False, unique=True)
     customer_email = models.EmailField()
     customer_name = models.CharField("Nombre del cliente", max_length=64)
     message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)  # Opcional: agrega fecha de creación
 
     def __str__(self):
         return f"Mensaje de {self.customer_name} ({self.customer_email})"
 
-# Crear un modelo basado en ModelForm que permita reemplazar nuestro ContactDataForm, lo podemos llamar ContactDataModelForm.
-class ContactDataModelForm(ModelForm):
     class Meta:
-        model = ContactData
-        fields = ["customer_name", "customer_email", "message"]
+        verbose_name = "Dato de Contacto"
+        verbose_name_plural = "Datos de Contacto"
